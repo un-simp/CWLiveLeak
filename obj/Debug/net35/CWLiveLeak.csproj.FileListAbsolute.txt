@@ -1,0 +1,10 @@
+C:\Users\un\RiderProjects\CWLiveLeak\bin\Debug\net35\CWLiveLeak.dll
+C:\Users\un\RiderProjects\CWLiveLeak\bin\Debug\net35\CWLiveLeak.pdb
+C:\Users\un\RiderProjects\CWLiveLeak\obj\Debug\net35\CWLiveLeak.csproj.AssemblyReference.cache
+C:\Users\un\RiderProjects\CWLiveLeak\obj\Debug\net35\PluginInfo.cs
+C:\Users\un\RiderProjects\CWLiveLeak\obj\Debug\net35\CWLiveLeak.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\un\RiderProjects\CWLiveLeak\obj\Debug\net35\CWLiveLeak.AssemblyInfoInputs.cache
+C:\Users\un\RiderProjects\CWLiveLeak\obj\Debug\net35\CWLiveLeak.AssemblyInfo.cs
+C:\Users\un\RiderProjects\CWLiveLeak\obj\Debug\net35\CWLiveLeak.csproj.CoreCompileInputs.cache
+C:\Users\un\RiderProjects\CWLiveLeak\obj\Debug\net35\CWLiveLeak.dll
+C:\Users\un\RiderProjects\CWLiveLeak\obj\Debug\net35\CWLiveLeak.pdb
