@@ -40,14 +40,18 @@
 
     <ItemGroup>
       <None Remove="hypercam.png" />
-      <Content Include="hypercam.png">
+      <Resource Include="hypercam.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="liveleak.png" />
       <Resource Include="liveleak.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="spookycam.png" />
+      <Resource Include="spookycam.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
     </ItemGroup>
