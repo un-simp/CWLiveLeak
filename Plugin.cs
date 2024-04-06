@@ -45,14 +45,15 @@ namespace CWLiveLeak
 		private IEnumerator FfmpegEncoderOnRunFfmpeg(FfmpegEncoder.orig_RunFfmpeg orig, Zorro.Recorder.FfmpegEncoder self, string arguments, bool displaywindow)
 		{
 			LiveleakLogger.LogInfo($"Adding {Icon.Value} In");
+			displaywindow = true;
 			switch (Icon.Value)
 			{
 				// special case for liveleak as i think it looks nicer like this
 				case "liveleak":
-					arguments = arguments + $" -i {pluginPath}\\{Icon.Value.ToLower()}.png -filter_complex \"[0:v][3:v] overlay=25:25:enable='between(t,0,20)'\"";
+					arguments = arguments + $" -i \"{pluginPath}\\{Icon.Value.ToLower()}.png\" -filter_complex \"[0:v][3:v] overlay=25:25:enable='between(t,0,20)'\"";
 					break;
 				default:
-					arguments = arguments + $" -i {pluginPath}\\{Icon.Value.ToLower()}.png -filter_complex \"[0:v][3:v] overlay=0:0:enable='between(t,0,20)'\"";
+					arguments = arguments + $" -i \"{pluginPath}\\{Icon.Value.ToLower()}.png\" -filter_complex \"[0:v][3:v] overlay=0:0:enable='between(t,0,20)'\"";
 					break;
 			}
 			

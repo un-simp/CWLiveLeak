@@ -1,4 +1,4 @@
-﻿# CW LiveLeak™
+# CW LiveLeak™
 
 ### Ever wanted your Content Warning footage looking like its from LiveLeak??
 
@@ -8,21 +8,21 @@ This mod does just that! By default you have 3 choices
 
 ### LiveLeak
 
-![Liveleak](readmeassets/ll.png)
+![Liveleak](https://github.com/un-simp/CWLiveLeak/raw/master/readmeassets/ll.png)
 
 ### Hypercam
 
-![hypercam](readmeassets/hyper.png)
+![hypercam](https://github.com/un-simp/CWLiveLeak/raw/master/readmeassets/hyper.png)
 
 ### and its in universe counterpart. SpookyCam!
 
-![SpookyCam](readmeassets/spook.png)
+![SpookyCam](https://github.com/un-simp/CWLiveLeak/raw/master/readmeassets/spook.png)
 
 
 ## Known Bugs
 
 This might happen
-![whoops](readmeassets/whoops.png)
+![whoops](https://github.com/un-simp/CWLiveLeak/raw/master/readmeassets/whoops.png)
 idk why just click replay and it fixes itself
 
 ## Config
