@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+
+namespace CWLiveLeak;
+
+public class SelectionManager : MonoBehaviour
+{
+	public static string AssetBundlePath { get; internal set; } = Path.Combine(Plugin.pluginPath, "cwliveleak");
+
+	internal static GameObject selectionObject;
+	
+	internal static void SurfaceNetworkHandlerOnRPCM_StartGame(On.SurfaceNetworkHandler.orig_RPCM_StartGame orig, SurfaceNetworkHandler self)
+	{
+		// yes i stole this from unity docs what u gonna do?????
+		var myLoadedAssetBundle = AssetBundle.LoadFromFile(AssetBundlePath);
+		if (myLoadedAssetBundle == null)
+		{
+			Debug.Log("Failed to load AssetBundle!");
+			return;
+		}
+		try
+		{
+			var prefab = myLoadedAssetBundle.LoadAsset<GameObject>("Monitor");
+			selectionObject = UnityEngine.Object.Instantiate(prefab);
+		} catch (Exception e)
+		{
+			Console.WriteLine(e);
+			Plugin.LiveleakLogger.LogError("WHAT THE FUCK WHY DOES IT NOT EXIST");
+		}
+		
+		selectionObject.transform.position = new Vector3((float) -21.5031, (float) 2.83913, (float) 16.0612);
+		// next we need to find the object and transform
+
+		myLoadedAssetBundle.Unload(false);
+		orig(self);
+	}
+}

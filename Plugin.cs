@@ -10,19 +10,19 @@ using UnityEngine;
 using Zorro.Recorder;
 using BepInEx.Configuration;
 using BepInEx.Logging;
-using FfmpegEncoder = On.Zorro.Recorder.FfmpegEncoder;
 
 
 namespace CWLiveLeak
 {
-	[BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
+    [ContentWarningPlugin("CWLiveleak", "1.0.0", true)]
+    [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
 	public class Plugin : BaseUnityPlugin
 	{
 
-		private ConfigEntry<string> Icon;
-		public string pluginPath;
-		static internal ManualLogSource? LiveleakLogger;
-
+		internal static ConfigEntry<string> Icon;
+		internal static ConfigEntry<string> ffmpegDebugging;
+		public static string pluginPath;
+		internal static ManualLogSource? LiveleakLogger; 
 		private void Awake()
 		{
 			LiveleakLogger = base.Logger;
@@ -30,11 +30,18 @@ namespace CWLiveLeak
 				"Icon",  // The key of the configuration option in the configuration file
 				"liveleak", // The default value
 				"What Icon is shown, available choices are: liveleak, hypercam, spookycam "); // Description of the option to show in the config file
+			ffmpegDebugging = Config.Bind("Debugging",
+				"Display FFmpeg Window",
+				"false", 
+				"So you can watch ffmpeg shit itself in real time!");
 			LiveleakLogger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
 			Init();
 			// looks like i dont need to harmony :yay:
-			On.Zorro.Recorder.FfmpegEncoder.RunFfmpeg += FfmpegEncoderOnRunFfmpeg;
+			On.Zorro.Recorder.FfmpegEncoder.RunFfmpeg += FfmpegHook.FfmpegEncoderOnRunFfmpeg;
+			On.SurfaceNetworkHandler.RPCM_StartGame += SelectionManager.SurfaceNetworkHandlerOnRPCM_StartGame;
 		}
+
+
 
 		private void Init()
 		{
@@ -42,24 +49,7 @@ namespace CWLiveLeak
 			pluginPath = Path.GetDirectoryName(callingAssembly.Location);
 		}
 		
-		private IEnumerator FfmpegEncoderOnRunFfmpeg(FfmpegEncoder.orig_RunFfmpeg orig, Zorro.Recorder.FfmpegEncoder self, string arguments, bool displaywindow)
-		{
-			LiveleakLogger.LogInfo($"Adding {Icon.Value} In");
-			displaywindow = true;
-			switch (Icon.Value)
-			{
-				// special case for liveleak as i think it looks nicer like this
-				case "liveleak":
-					arguments = arguments + $" -i \"{pluginPath}\\{Icon.Value.ToLower()}.png\" -filter_complex \"[0:v][3:v] overlay=25:25:enable='between(t,0,20)'\"";
-					break;
-				default:
-					arguments = arguments + $" -i \"{pluginPath}\\{Icon.Value.ToLower()}.png\" -filter_complex \"[0:v][3:v] overlay=0:0:enable='between(t,0,20)'\"";
-					break;
-			}
-			
-			
-			return orig(self,arguments,displaywindow);
-		}
+		
 
 
 	}
